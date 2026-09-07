@@ -1,0 +1,31 @@
+name: "02 - pull_request_target: trusted metadata automation"
+
+on:
+  pull_request_target:
+    types: [opened]
+
+# ROI requires narrowly scoped metadata writes. Every unspecified permission is
+# set to none. No repository secret is needed for this use case.
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  triage-pull-request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Check out trusted default-branch automation
+        # No ref is supplied: on pull_request_target, checkout stays on the
+        # trusted base repository default branch rather than the PR head.
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Label the pull request and post the comparison
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node .github/scripts/triage.mjs

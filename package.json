@@ -1,0 +1,15 @@
+{
+  "name": "pull-request-target-roi-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Live comparison of pull_request and metadata-only pull_request_target automation",
+  "type": "module",
+  "scripts": {
+    "preview": "node scripts/preview-triage.mjs",
+    "roi": "node scripts/calculate-roi.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

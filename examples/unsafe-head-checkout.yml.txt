@@ -1,0 +1,20 @@
+DO NOT ENABLE THIS FILE. It crosses the lab's trust boundary.
+
+name: Unsafe privileged PR build
+
+on:
+  pull_request_target:
+
+jobs:
+  unsafe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          allow-unsafe-pr-checkout: true
+      - run: npm test
+
+# The ROI workflow must never do this. It replaces trusted default-branch code
+# with contributor-controlled code while retaining the privileged event.

@@ -1,0 +1,50 @@
+{
+  "largeChangeThreshold": 25,
+  "fallbackLabel": "area: general",
+  "labels": {
+    "area: automation": {
+      "color": "5319e7",
+      "description": "Changes GitHub Actions or repository automation"
+    },
+    "area: documentation": {
+      "color": "0075ca",
+      "description": "Changes documentation"
+    },
+    "area: source": {
+      "color": "0e8a16",
+      "description": "Changes application or library source"
+    },
+    "area: tests": {
+      "color": "fbca04",
+      "description": "Changes tests or test fixtures"
+    },
+    "area: general": {
+      "color": "cfd3d7",
+      "description": "Changes outside the configured areas"
+    },
+    "size: large": {
+      "color": "d93f0b",
+      "description": "Changes at least 25 files"
+    }
+  },
+  "rules": [
+    {
+      "label": "area: automation",
+      "prefixes": [".github/"]
+    },
+    {
+      "label": "area: documentation",
+      "prefixes": ["docs/"],
+      "suffixes": [".md", ".mdx"]
+    },
+    {
+      "label": "area: source",
+      "prefixes": ["src/", "lib/"]
+    },
+    {
+      "label": "area: tests",
+      "prefixes": ["test/", "tests/", "fixtures/"],
+      "suffixes": [".test.js", ".test.mjs", ".spec.js", ".spec.mjs"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "repository": {
+    "full_name": "conference-demo/pull-request-target-roi-lab"
+  },
+  "pull_request": {
+    "number": 42,
+    "user": {
+      "login": "external-contributor"
+    },
+    "head": {
+      "repo": {
+        "fork": true,
+        "full_name": "external-contributor/pull-request-target-roi-lab"
+      }
+    }
+  },
+  "changedFiles": [
+    "docs/getting-started.md",
+    "src/example.js",
+    "tests/example.test.js"
+  ],
+  "forkSourceMarker": "FORK_PULL_REQUEST_VERSION"
+}

@@ -1,0 +1,25 @@
+name: "01 - pull_request: contribution context"
+
+on:
+  pull_request:
+    types: [opened]
+
+# This job may execute contributor-controlled code, so it receives no write
+# permission and no secrets. Every unspecified permission is set to none.
+permissions:
+  contents: read
+
+jobs:
+  observe-pull-request-context:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Check out the pull request merge revision
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Report the untrusted contribution context
+        run: node scripts/report-pull-request-context.mjs
