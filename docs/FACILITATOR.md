@@ -15,7 +15,7 @@ Participants should leave able to explain both halves of the decision:
 
 1. Publish this directory as a dedicated public repository.
 2. Keep the repository's default workflow permission restricted. The workflow
-   requests only `contents: read`, `pull-requests: read`, and `issues: write`.
+   requests only `contents: read`, `pull-requests: write`, and `issues: write`.
 3. Explain that any new PR receives both named checks and a side-by-side
    comparison comment. Use an external fork for the live version because it
    also exposes the fork approval boundary.
@@ -40,10 +40,11 @@ Participants should leave able to explain both halves of the decision:
     cannot write PR metadata; workflow 02 can write metadata but must never
     execute the proposed code.
 
-If organization policy prevents the requested `issues: write` permission, use
-a personal repository dedicated to the lab or ask the organization owner to
-approve this narrowly scoped permission. Do not enable write tokens for normal
-fork `pull_request` workflows.
+If organization policy prevents the requested `issues: write` or
+`pull-requests: write` permission, use a personal repository dedicated to the
+lab or ask the organization owner to approve these narrowly scoped metadata
+permissions. Do not enable write tokens for normal fork `pull_request`
+workflows.
 
 ## Explain the ROI
 

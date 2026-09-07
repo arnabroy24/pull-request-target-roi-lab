@@ -38,7 +38,7 @@ metadata.
 | Maintainer approval | May wait for approval before contributor code runs | Normally runs as trusted base automation without the standard fork-code approval |
 | Correct purpose | Build, lint, or test the proposed contribution | Label, comment, assign, or perform other metadata/API automation |
 | Execute contributor code? | Yes, with a read-only token and no secrets | **No**—treat PR content only as untrusted data |
-| Write labels or comments? | Normally unavailable because fork-token writes are downgraded | Yes, with narrow permissions such as `issues: write` |
+| Write labels or comments? | Normally unavailable because fork-token writes are downgraded | Yes, with narrow `issues: write` and `pull-requests: write` permissions |
 | Primary safety benefit | Proposed code receives only the authority needed for CI | Trusted automation can reduce maintainer toil on every PR |
 | Main failure mode | Granting fork code more authority than it needs | Checking out or executing the PR head creates a privileged "pwn request" |
 
@@ -48,9 +48,10 @@ service. It is not a safe way to run fork code with secrets.
 
 ## What every PR author sees
 
-Opening any pull request starts two workflows. The `pull_request_target`
-workflow also posts the comparison table directly on the PR, so the lesson does
-not depend on the author knowing where to find an Actions log.
+Opening, updating, or reopening any pull request starts two workflows. The
+`pull_request_target` workflow also posts the comparison table directly on the
+PR, so the lesson does not depend on the author knowing where to find an
+Actions log.
 
 ### 01 — `pull_request`: contribution context
 
@@ -73,7 +74,7 @@ This is where builds and tests belong.
 3. requests filenames from the Pull Requests API;
 4. evaluates `.github/triage-policy.json` as trusted policy;
 5. creates/applies labels and posts a side-by-side explanation using
-   `issues: write`.
+   `issues: write` and `pull-requests: write`.
 
 All PR-derived values remain JavaScript strings or JSON request values. None is
 inserted into generated shell source.
@@ -121,9 +122,10 @@ response and contributor retention.
 10. Open workflow 01's job summary and compare its fork marker with workflow
     02's base marker.
 
-The explicit `issues: write` permission can be blocked by stricter organization
-policy. If so, use a dedicated personal repository or obtain approval for that
-single permission; do not send write tokens to ordinary fork workflows.
+The explicit `issues: write` and `pull-requests: write` permissions can be
+blocked by stricter organization policy. If so, use a dedicated personal
+repository or obtain approval for those metadata permissions; do not send write
+tokens to ordinary fork workflows.
 
 See [docs/FACILITATOR.md](docs/FACILITATOR.md) for the presentation script.
 
