@@ -17,10 +17,10 @@ const pullRequestWorkflow = fs.readFileSync(
 test("enabled workflow preserves the metadata-only trust boundary", () => {
   for (const required of [
     "pull_request_target:",
-    "types: [opened]",
+    "types: [opened, synchronize, reopened]",
     "contents: read",
     "issues: write",
-    "pull-requests: read",
+    "pull-requests: write",
     "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
     "persist-credentials: false",
     "GH_TOKEN: ${{ github.token }}",
@@ -48,7 +48,7 @@ test("enabled workflow preserves the metadata-only trust boundary", () => {
 test("pull_request comparison can execute the contribution but cannot write", () => {
   for (const required of [
     "pull_request:",
-    "types: [opened]",
+    "types: [opened, synchronize, reopened]",
     "permissions:\n  contents: read",
     "actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
     "persist-credentials: false",

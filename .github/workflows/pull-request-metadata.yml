@@ -2,14 +2,14 @@ name: "02 - pull_request_target: trusted metadata automation"
 
 on:
   pull_request_target:
-    types: [opened]
+    types: [opened, synchronize, reopened]
 
 # ROI requires narrowly scoped metadata writes. Every unspecified permission is
 # set to none. No repository secret is needed for this use case.
 permissions:
   contents: read
   issues: write
-  pull-requests: read
+  pull-requests: write
 
 jobs:
   triage-pull-request:

@@ -2,7 +2,7 @@ name: "01 - pull_request: contribution context"
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened]
 
 # This job may execute contributor-controlled code, so it receives no write
 # permission and no secrets. Every unspecified permission is set to none.
